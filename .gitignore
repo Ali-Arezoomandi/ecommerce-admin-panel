@@ -1,0 +1,22 @@
+# ==== Backend (Django) ====
+Backend/venv/
+Backend/**/__pycache__/
+Backend/**/*.pyc
+Backend/.env
+!Backend/.env.example
+Backend/db.sqlite3
+Backend/media/
+Backend/*.log
+
+# ==== Frontend (React) ====
+Frontend/cms-app/node_modules/
+Frontend/cms-app/.env
+!Frontend/cms-app/.env.example
+Frontend/cms-app/build/
+Frontend/cms-app/npm-debug.log*
+
+# ==== IDE / OS ====
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

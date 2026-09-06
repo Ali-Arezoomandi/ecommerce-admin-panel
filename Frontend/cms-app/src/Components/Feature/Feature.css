@@ -1,0 +1,64 @@
+/* کارت‌های آمار */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.stat-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+}
+
+.stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.stat-title {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.stat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+}
+
+.stat-value {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 12px 0 4px 0;
+}
+
+.stat-unit {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.stat-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #2563eb;
+    background-color: rgba(37, 99, 235, 0.08);
+    padding: 4px 8px;
+    border-radius: 6px;
+    margin-top: 10px;
+    width: fit-content;
+}

@@ -1,0 +1,87 @@
+.products-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.products-title {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-add-product {
+    background-color: var(--accent-blue);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-add-product:hover {
+    background-color: #1d4ed8;
+}
+
+/* استایل جدول محصولات */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.action-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.8rem;
+    gap: 8px;
+}
+
+.btn-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+    background-color: var(--badge-bg);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    color: var(--text-main);
+    border-color: var(--accent-blue);
+}
+
+.btn-icon.edit:hover {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-icon.delete:hover {
+    color: #ef4444;
+    border-color: #ef4444;
+}
