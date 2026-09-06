@@ -39,14 +39,16 @@ class ProductSerializer(BaseModelSerializer):
 
 class CommentSerializer(BaseModelSerializer):
     url_name = "products:comment-detail"
+    user_name = serializers.CharField(source="user.get_full_name")
+    product_name = serializers.CharField(source="product.title")
 
     class Meta:
         model = CommentModel
         fields = [
             "id",
             "body",
-            "user",
-            "product",
+            "user_name",
+            "product_name",
             "created_at",
             "absolute_custom_url",
         ]

@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Comment.css";
 import Table from "../../Components/Table/Table";
-import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
 
 export default function Comment() {
     const [comments, setComments] = useState([]);
@@ -14,25 +12,7 @@ export default function Comment() {
                 const response = await fetch("http://localhost:8000/api/products/comment");
                 const data = await response.json();
 
-                const detailComments = await Promise.all(
-                    data.map(async (comment) => {
-                        const [user, product] = await Promise.all([
-                            fetch(`http://localhost:8000/api/users/${comment.user}`),
-                            fetch(`http://localhost:8000/api/products/${comment.product}`),
-                        ]);
-
-                        const userJson = await user.json();
-                        const productJson = await product.json();
-
-                        return {
-                            ...comment,
-                            userName: `${userJson.first_name} ${userJson.last_name}`,
-                            productName: productJson.title,
-                        };
-                    }),
-                );
-
-                setComments(detailComments);
+                setComments(data);
             } catch (err) {
                 console.error("Error fetching comments: ", err);
             }
@@ -84,7 +64,7 @@ export default function Comment() {
             headerAlign: "center",
             align: "center",
             renderCell: (params) => {
-                return <div>{params.row.userName}</div>;
+                return <div>{params.row.user_name}</div>;
             },
         },
         {
@@ -94,7 +74,7 @@ export default function Comment() {
             headerAlign: "center",
             align: "center",
             renderCell: (params) => {
-                return <div>{params.row.productName}</div>;
+                return <div>{params.row.product_name}</div>;
             },
         },
         {

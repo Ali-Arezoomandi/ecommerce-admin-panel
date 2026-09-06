@@ -24,7 +24,10 @@ class ProductdetailView(generics.RetrieveUpdateDestroyAPIView):
     
 # ---------- Comment ----------    
 class CommentListView(generics.ListCreateAPIView):
-    queryset = CommentModel.objects.all()
+    queryset = CommentModel.objects.select_related(
+        "user",
+        "product"
+    )
     serializer_class = CommentSerializer
 
 
