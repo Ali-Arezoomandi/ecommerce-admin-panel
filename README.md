@@ -1,4 +1,4 @@
-# 🛍️ E-Commerce Admin Panel
+# E-Commerce Admin Panel
 
 A full-stack admin panel for online stores, built with **React** on the frontend and **Django REST Framework** on the backend. It lets you manage products, orders, discount coupons, users, and comments, with full Dark/Light theme support.
 
@@ -9,7 +9,7 @@ A full-stack admin panel for online stores, built with **React** on the frontend
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Preview](#-preview)
 - [Features](#-features)
@@ -23,7 +23,7 @@ A full-stack admin panel for online stores, built with **React** on the frontend
 
 ---
 
-## 🖼️ Preview
+## Preview
 
 ### Main Dashboard (Light & Dark theme)
 
@@ -50,7 +50,7 @@ A full-stack admin panel for online stores, built with **React** on the frontend
 
 ---
 
-## ✨ Features
+## Features
 
 - Analytics dashboard with a sales chart, order count, product count, users, and total revenue
 - Full product management (add, edit, delete, image upload, stock and price)
@@ -64,7 +64,7 @@ A full-stack admin panel for online stores, built with **React** on the frontend
 
 ---
 
-## 🧰 Tech Stack & Versions
+## Tech Stack & Versions
 
 | Layer    | Technology            | Version               |
 | -------- | --------------------- | --------------------- |
@@ -79,7 +79,7 @@ A full-stack admin panel for online stores, built with **React** on the frontend
 
 ---
 
-## 📦 Packages Used
+## Packages Used
 
 ### Frontend (`Frontend/cms-app/package.json`)
 
@@ -110,7 +110,7 @@ A full-stack admin panel for online stores, built with **React** on the frontend
  
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 ecommerce-admin-panel/
@@ -135,7 +135,7 @@ ecommerce-admin-panel/
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 
@@ -189,7 +189,7 @@ The frontend will be available at `http://localhost:3000` (the backend's default
 
 ---
 
-## 📚 API Documentation
+## API Documentation
 
 The backend auto-generates API documentation via `drf-spectacular`:
 
@@ -214,7 +214,7 @@ The backend auto-generates API documentation via `drf-spectacular`:
 
 ---
 
-## 🗺️ Roadmap
+## Roadmap
 
 - [ ] Add JWT authentication
 - [ ] Fully connect frontend pages to the real API instead of sample data
@@ -223,7 +223,7 @@ The backend auto-generates API documentation via `drf-spectacular`:
 
 ---
 
-## 📄 License
+## License
 
 This project is open source and available for learning purposes.
 
