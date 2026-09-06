@@ -86,11 +86,7 @@ A full-stack admin panel for online stores, built with **React** on the frontend
 | Package                       | Version  |
 | ----------------------------- | -------- |
 | react                         | ^19.2.8  |
-| react-dom                     | ^19.2.8  |
 | react-router-dom              | ^7.18.3  |
-| react-scripts                 | 5.0.1    |
-| react-bootstrap               | ^2.10.10 |
-| bootstrap                     | ^5.3.8   |
 | @mui/x-data-grid              | ^9.13.0  |
 | @mui/icons-material           | ^9.4.0   |
 | @emotion/react                | ^11.14.0 |
@@ -98,11 +94,7 @@ A full-stack admin panel for online stores, built with **React** on the frontend
 | @fortawesome/fontawesome-free | ^7.3.1   |
 | react-multi-date-picker       | ^4.5.2   |
 | recharts                      | ^3.10.1  |
-| web-vitals                    | ^2.1.4   |
-| @testing-library/react        | ^16.3.3  |
-| @testing-library/jest-dom     | ^6.9.1   |
-| @testing-library/dom          | ^10.4.1  |
-| @testing-library/user-event   | ^13.5.0  |
+
 
 ### Backend (`Backend/requirements.txt`)
 
@@ -113,18 +105,9 @@ A full-stack admin panel for online stores, built with **React** on the frontend
 | django-cors-headers       | 4.9.0    |
 | drf-spectacular           | 0.30.0   |
 | pillow                    | 12.3.0   |
-| PyYAML                    | 6.0.3    |
 | jsonschema                | 4.26.0   |
 | jsonschema-specifications | 2025.9.1 |
-| referencing               | 0.37.0   |
-| rpds-py                   | 2026.6.3 |
-| sqlparse                  | 0.6.0    |
-| uritemplate               | 4.2.0    |
-| inflection                | 0.5.1    |
-| asgiref                   | 3.12.1   |
-| attrs                     | 26.1.0   |
-| tzdata                    | 2026.3   |
-
+ 
 ---
 
 ## 🗂️ Project Structure
