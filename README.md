@@ -231,6 +231,6 @@ This project is open source and available for learning purposes.
 
 <div align="center">
 
-Built with ❤️ by [Ali Arezoomandi](https://github.com/Ali-Arezoomandi)
+Built by [Ali Arezoomandi](https://github.com/Ali-Arezoomandi)
 
 </div>
