@@ -3,9 +3,7 @@ import "./User.css";
 import TableBoxDetail from "../../Components/TableBoxDetail/TableBoxDetail";
 import userDetails from "../../data/userDetails";
 import Table from "../../Components/Table/Table";
-import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
 
 export default function User() {
     const [users, setUsers] = useState([]);
@@ -13,7 +11,7 @@ export default function User() {
     useEffect(() => {
         fetch("http://localhost:8000/api/users")
             .then((response) => response.json())
-            .then((data) => setUsers(data))
+            .then((data) => setUsers(data.reverse()))
             .catch((err) => console.error("Error for get users: ", err));
     }, []);
 

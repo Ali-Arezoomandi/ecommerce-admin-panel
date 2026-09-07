@@ -3,9 +3,7 @@ import "./Order.css";
 import TableBoxDetail from "../../Components/TableBoxDetail/TableBoxDetail";
 import orderDetail from "../../data/orderDetails";
 import Table from "../../Components/Table/Table";
-import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
 
 export default function Order() {
     const [orders, setOrders] = useState([]);
@@ -14,7 +12,7 @@ export default function Order() {
     useEffect(() => {
         fetch("http://localhost:8000/api/orders")
             .then((response) => response.json())
-            .then((data) => setOrders(data))
+            .then((data) => setOrders(data.reverse()))
             .catch((err) => console.error("Error for get orders: ", err));
     }, []);
 

@@ -12,7 +12,7 @@ export default function Comment() {
                 const response = await fetch("http://localhost:8000/api/products/comment");
                 const data = await response.json();
 
-                setComments(data);
+                setComments(data.reverse());
             } catch (err) {
                 console.error("Error fetching comments: ", err);
             }

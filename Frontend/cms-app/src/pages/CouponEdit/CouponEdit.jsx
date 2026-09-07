@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./CouponEdit.css";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import DatePicker from "react-multi-date-picker";
 import TimePicker from "react-multi-date-picker/plugins/time_picker";
@@ -9,37 +9,27 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import gregorian from "react-date-object/calendars/gregorian";
 
 export default function CouponEdit() {
-    const [code, setCode] = useState("");
-    const [percent, setPercent] = useState(0);
-    const [status, setStatus] = useState("");
-    const [expirationDate, setExpirationData] = useState("");
+    let location = useLocation();
+    let { id, code, percent, status, expiration_date } = location.state;
 
-    let params = useParams();
+    const [couponCode, setCouponCode] = useState(code);
+    const [couponPercent, setCouponPercent] = useState(percent);
+    const [couponStatus, setCouponStatus] = useState(status === 1 ? "در دسترس" : "منقضی شده");
+    const [expirationDate, setExpirationData] = useState(expiration_date);
+
     let navigate = useNavigate();
-
-    useEffect(() => {
-        fetch(`http://localhost:8000/api/products/coupon/${params.couponId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setCode(data.code);
-                setPercent(data.percent);
-                setStatus(data.status === 1 ? "در دسترس" : "منقضی شده");
-                setExpirationData(data.expiration_date ? data.expiration_date.slice(0, 16) : "");
-            })
-            .catch((err) => console.error("Error to fetching coupon detail: ", err));
-    }, [params.couponId]);
 
     const submitHandler = (event) => {
         event.preventDefault();
 
         if (code && percent && status && expirationDate) {
             const formData = new FormData();
-            formData.append("code", code);
-            formData.append("percent", percent);
-            formData.append("status", status === "در دسترس" ? 1 : 2);
+            formData.append("code", couponCode);
+            formData.append("percent", couponPercent);
+            formData.append("status", couponStatus === "در دسترس" ? 1 : 2);
             formData.append("expiration_date", expirationDate + ":00");
 
-            fetch(`http://localhost:8000/api/products/coupon/${params.couponId}`, {
+            fetch(`http://localhost:8000/api/products/coupon/${id}`, {
                 method: "PATCH",
                 body: formData,
             })
@@ -52,15 +42,15 @@ export default function CouponEdit() {
     };
 
     const codeHandler = (event) => {
-        setCode(event.target.value);
+        setCouponCode(event.target.value);
     };
 
     const percentHandler = (event) => {
-        setPercent(event.target.value);
+        setCouponPercent(event.target.value);
     };
 
     const statusHandler = (event) => {
-        setStatus(event.target.value);
+        setCouponStatus(event.target.value);
     };
 
     const expirationDateHandler = (dateObject) => {
@@ -105,7 +95,7 @@ export default function CouponEdit() {
                             name="code"
                             className="form-control"
                             required
-                            value={code}
+                            value={couponCode}
                             onChange={codeHandler}
                         />
                     </div>
@@ -119,7 +109,7 @@ export default function CouponEdit() {
                             id="percent"
                             name="percent"
                             className="form-control"
-                            value={percent}
+                            value={couponPercent}
                             onChange={percentHandler}
                             required
                         />
@@ -134,7 +124,7 @@ export default function CouponEdit() {
                                 name="status"
                                 id="status"
                                 className="form-control"
-                                value={status}
+                                value={couponStatus}
                                 onChange={statusHandler}>
                                 <option value="در دسترس">در دسترس</option>
                                 <option value="منقضی شده">منقضی شده</option>

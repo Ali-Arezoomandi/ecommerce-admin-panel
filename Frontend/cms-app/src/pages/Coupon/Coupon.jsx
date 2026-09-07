@@ -4,8 +4,8 @@ import couponDetail from "../../data/couponDetail";
 import Table from "../../Components/Table/Table";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
 import TableBoxDetail from "../../Components/TableBoxDetail/TableBoxDetail";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Coupon() {
     const [coupons, setCoupons] = useState([]);
@@ -13,9 +13,11 @@ export default function Coupon() {
     useEffect(() => {
         fetch("http://localhost:8000/api/products/coupon")
             .then((response) => response.json())
-            .then((data) => setCoupons(data))
+            .then((data) => setCoupons(data.reverse()))
             .catch((err) => console.error("Error for get coupons: ", err));
     }, []);
+
+    let navigate = useNavigate();
 
     const removeHandler = (couponId) => {
         const isConfirm = window.confirm("آیا از حذف کد تخفیف مطمئن هستید ؟");
@@ -107,11 +109,16 @@ export default function Coupon() {
                             <DeleteIcon />
                         </button>
 
-                        <Link to={`/coupons/${params.row.id}`}>
-                            <button className="btn-icon edit" title="ویرایش">
-                                <DriveFileRenameOutlineIcon />
-                            </button>
-                        </Link>
+                        <button
+                            className="btn-icon edit"
+                            title="ویرایش"
+                            onClick={() => {
+                                navigate(`/coupons/${params.row.id}`, {
+                                    state: params.row,
+                                });
+                            }}>
+                            <DriveFileRenameOutlineIcon />
+                        </button>
                     </div>
                 );
             },

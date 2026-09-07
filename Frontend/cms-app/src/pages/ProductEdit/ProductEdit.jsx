@@ -1,45 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./ProductEdit.css";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export default function ProductEdit() {
-    const [title, setTitle] = useState("");
-    const [price, setPrice] = useState(0);
-    const [stock, setStock] = useState(0);
-    const [image, setImage] = useState("");
+    let location = useLocation();
+    let { id, title, price, stock, img, status } = location.state;
+
+    const [productTitle, setProductTitle] = useState(title);
+    const [productPrice, setProductPrice] = useState(price);
+    const [productStock, setProductStock] = useState(stock);
+    const [image, setImage] = useState(img);
     const [imageFile, setImageFile] = useState(null);
-    const [status, setStatus] = useState("");
+    const [productStatus, setProductStatus] = useState(status === 1 ? "موجود" : "ناموجود");
 
-    let params = useParams();
     let navigate = useNavigate();
-
-    useEffect(() => {
-        fetch(`http://localhost:8000/api/products/${params.productId}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setTitle(data.title);
-                setPrice(data.price);
-                setStock(data.stock);
-                setImage(data.img);
-                setStatus(data.status === 1 ? "موجود" : "ناموجود");
-            })
-            .catch((err) => console.error("Error to fetching product detail: ", err));
-    }, [params.productId]);
 
     const submitHandler = (event) => {
         event.preventDefault();
 
-        if (title && price && stock && status) {
+        if (productTitle && productPrice && productStock && productStatus) {
             const formData = new FormData();
-            formData.append("title", title);
-            formData.append("price", price);
-            formData.append("stock", stock);
-            formData.append("status", status === "موجود" ? 1 : 2);
+            formData.append("title", productTitle);
+            formData.append("price", productPrice);
+            formData.append("stock", productStock);
+            formData.append("status", productStatus === "موجود" ? 1 : 2);
             if (imageFile) {
                 formData.append("img", imageFile);
             }
 
-            fetch(`http://localhost:8000/api/products/${params.productId}`, {
+            fetch(`http://localhost:8000/api/products/${id}`, {
                 method: "PATCH",
                 body: formData,
             })
@@ -52,18 +41,18 @@ export default function ProductEdit() {
     };
 
     const titleHandler = (event) => {
-        setTitle(event.target.value);
+        setProductTitle(event.target.value);
     };
 
     const priceHandler = (event) => {
-        setPrice(event.target.value);
+        setProductPrice(event.target.value);
     };
 
     const stockHandler = (event) => {
-        setStock(event.target.value);
+        setProductStock(event.target.value);
     };
 
-    const imageHandler = (event) => {        
+    const imageHandler = (event) => {
         const file = event.target.files[0];
         if (file) {
             setImageFile(file);
@@ -72,7 +61,7 @@ export default function ProductEdit() {
     };
 
     const statusHandler = (event) => {
-        setStatus(event.target.value);
+        setProductStatus(event.target.value);
     };
 
     return (
@@ -107,7 +96,7 @@ export default function ProductEdit() {
                             name="title"
                             className="form-control"
                             required
-                            value={title}
+                            value={productTitle}
                             onChange={titleHandler}
                         />
                     </div>
@@ -121,7 +110,7 @@ export default function ProductEdit() {
                             id="price"
                             name="price"
                             className="form-control"
-                            value={price}
+                            value={productPrice}
                             onChange={priceHandler}
                             required
                         />
@@ -136,7 +125,7 @@ export default function ProductEdit() {
                             id="stock"
                             name="stock"
                             className="form-control"
-                            value={stock}
+                            value={productStock}
                             onChange={stockHandler}
                             required
                         />
@@ -151,7 +140,7 @@ export default function ProductEdit() {
                                 name="status"
                                 id="status"
                                 className="form-control"
-                                value={status}
+                                value={productStatus}
                                 onChange={statusHandler}>
                                 <option value="موجود">موجود</option>
                                 <option value="ناموجود">ناموجود</option>

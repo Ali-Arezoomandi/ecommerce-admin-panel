@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Product.css";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Table from "../../Components/Table/Table";
 
 export default function Product() {
@@ -11,9 +11,11 @@ export default function Product() {
     useEffect(() => {
         fetch("http://localhost:8000/api/products")
             .then((response) => response.json())
-            .then((data) => setProducts(data))
+            .then((data) => setProducts(data.reverse()))
             .catch((err) => console.error("Error for get products: ", err));
     }, []);
+
+    let navigate = useNavigate();
 
     const removeHandler = (productId) => {
         const isConfirm = window.confirm("آیا از حذف محصول مطمئن هستید ؟");
@@ -116,11 +118,16 @@ export default function Product() {
                             <DeleteIcon />
                         </button>
 
-                        <Link to={`/products/${params.row.id}`}>
-                            <button className="btn-icon edit" title="ویرایش">
-                                <DriveFileRenameOutlineIcon />
-                            </button>
-                        </Link>
+                        <button
+                            className="btn-icon edit"
+                            title="ویرایش"
+                            onClick={() => {
+                                navigate(`/products/${params.row.id}`, {
+                                    state: params.row
+                                });
+                            }}>
+                            <DriveFileRenameOutlineIcon />
+                        </button>
                     </div>
                 );
             },
